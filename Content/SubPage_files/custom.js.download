@@ -1,0 +1,120 @@
+
+jQuery(document).ready(function ($) {
+    $('.nav-toggle').click(function () {
+        $('#main-menu div ul:first-child').slideToggle(250);
+        return false;
+    });
+    if (($(window).width() > 640) || ($(document).width() > 640)) {
+        $('#main-menu li').mouseenter(function () {
+            $(this).children('ul').css('display', 'none').stop(true, true).slideToggle(250).css('display', 'block').children('ul').css('display', 'none');
+        });
+        $('#main-menu li').mouseleave(function () {
+            $(this).children('ul').stop(true, true).fadeOut(250).css('display', 'block');
+        })
+    } else {
+        $('#main-menu li').each(function () {
+            if ($(this).children('ul').length)
+                $(this).append('<span class="drop-down-toggle"><span class="drop-down-arrow"></span></span>');
+        });
+        $('.drop-down-toggle').click(function () {
+            $(this).parent().children('ul').slideToggle(250);
+        });
+    }
+
+    $('#incfont').click(function () {
+        curSize = parseInt($('body').css('font-size')) + 2;
+        if (curSize <= 20)
+            $('body').css('font-size', curSize);
+    });
+    $('#decfont').click(function () {
+        curSize = parseInt($('body').css('font-size')) - 2;
+
+        if (curSize >= 12)
+            $('body').css('font-size', curSize);
+    });
+    $('#resetfont').click(function () {
+        curSize = parseInt($('body').css('font-size'));
+        $('body').css('font-size', '13px');
+    });
+
+   $("input#edit-captcha-response").attr("maxlength", 6)
+
+   $('#user-login').submit(function() {
+      if ($.trim($("#edit-name").val()) === "" || $.trim($("#edit-pass").val()) === "" || $.trim($("#edit-captcha-response").val()) === "") {
+         alert('Please fill all fields otherwise you can not submit.');
+          return false;
+      }
+   });
+    /*$("#edit-picture input[type=file]").change(function () {
+        var F = this.files;
+
+        if (F && F[0]) {
+            for (var i = 0; i < F.length; i++) {
+                file = F[i];
+                var reader = new FileReader();
+                var image = new Image();
+                reader.readAsDataURL(file);
+                reader.onload = function (_file) {
+                    image.src = _file.target.result; // url.createObjectURL(file);
+                    image.onload = function () {
+                        var w = this.width,
+                                h = this.height,
+                                t = file.type, // ext only: // file.type.split('/')[1],
+                                n = file.name,
+                                s = ~~(file.size / 1024) + 'KB';
+                    };
+                    image.onerror = function () {
+                        //$('.file').load().fadeIn("slow");
+                        alert('Invalid file type: ' + file.type);
+                        $(".files").html('');
+                    };
+                }
+            }//for loop
+        }
+    });
+    
+    */
+    
+    
+    /*$("input[name='files[field_image_und_0]']").change(function () {
+        var F = this.files;
+
+        if (F && F[0]) {
+            for (var i = 0; i < F.length; i++) {
+                file = F[i];
+                var reader = new FileReader();
+                var image = new Image();
+                reader.readAsDataURL(file);
+                reader.onload = function (_file) {
+                    image.src = _file.target.result; // url.createObjectURL(file);
+                    image.onload = function () {
+                        var w = this.width,
+                                h = this.height,
+                                t = file.type, // ext only: // file.type.split('/')[1],
+                                n = file.name,
+                                s = ~~(file.size / 1024) + 'KB';
+                    };
+                    image.onerror = function () {
+                        //$('.file').load().fadeIn("slow");
+                        alert('Invalid file type: ' + file.type);
+                        $(".files").html('');
+                    };
+                }
+            }//for loop
+        }
+    });*/
+//end file uploading
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
